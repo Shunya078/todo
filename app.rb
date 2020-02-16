@@ -113,7 +113,7 @@ post '/tasks/:id' do
   if Date.valid_date?(date[0].to_i,date[1].to_i,date[2].to_i)
     task.title = CGI.escapeHTML(params[:title])
     task.due_date = Date.parse(params[:due_date])
-    task.list_id = list
+    task.list_id = list.id
     task.save
     redirect '/'
   else

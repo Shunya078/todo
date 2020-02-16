@@ -2,6 +2,7 @@
   <form action ="/tasks/<%= @task.id %>" method = "post">
     <div class ="controls">
       <div class ="form-group">
+        <span class = "form control">前の投稿内容は「<%= @task.title%>」</span>
         <input type = "text" name = "title" placeholder = "タイトル"　value = "<%= CGI.escapeHTML(@task.title)%>" class ="form-control input-lg"><br>
         <input type = "text" name = "due_date" placeholder = "締め切り" value = "<%= @task.due_date%>" class ="form-control input-lg"><br>
         リスト：

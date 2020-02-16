@@ -5,7 +5,17 @@
 					<%= erb :_count_due, locals: {title: "トップ", url: "/", tasks: Task.all} %>
 					<li class ="list-group-item"><a href = "/tasks/done">done</a></li>
 					<%= erb :_count_due, locals: {title: "締め切りすぎた", url: "/tasks/over", tasks: Task.all} %>
-					<%= erb :_count_due, locals: {title: "重要", url: "/tasks/impo", tasks: Task.all} %>
+					<li class ="list-group-item">
+						<a href = "/tasks/impo">
+							重要
+							<% unless current_user.nil? %>
+								<% impo = Task.had_by(current_user).where(star: true).count%>
+								<% if impo != 0 %>
+									<span class="badge pull-right"><%= impo %></span>
+								<% end %>
+							<% end %>
+						</a>
+					</li>
 					<% @lists.each do |list| %>
 						<%= erb :_count_due, locals: {title: list.name, url: "/?list=#{list.id}", tasks: list.tasks} %>
 					<% end %>
